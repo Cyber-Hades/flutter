@@ -10,13 +10,25 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Decide how many columns for GridView based on screen width
+    int gridCount = 2; // default
+    if (screenWidth >= 600) {
+      gridCount = 3;
+    }
+    if (screenWidth >= 900) {
+      gridCount = 4;
+    }
+
+    // Adjust padding dynamically
+    double gridPadding = screenWidth * 0.03;
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar:
-            //Appbar
-            AppBar(
-          backgroundColor: Color(0xfff9ecd7),
+        appBar: AppBar(
+          backgroundColor: const Color(0xfff9ecd7),
           automaticallyImplyLeading: false,
           elevation: 1,
           leading: IconButton(
@@ -24,15 +36,13 @@ class CategoryScreen extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => RootScreen()));
               },
-              icon: Icon(Icons.arrow_back_ios_new)),
+              icon: const Icon(Icons.arrow_back_ios_new)),
           title: const Text(
             "Categories",
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ),
-
         body: Column(children: [
-          //Tabs
           const TabBar(
             labelColor: Colors.black,
             indicatorColor: Colors.blue,
@@ -56,10 +66,10 @@ class CategoryScreen extends StatelessWidget {
                 // Male Tab
                 GridView.count(
                   shrinkWrap: true,
-                  crossAxisCount: 2,
-                  padding: const EdgeInsets.all(10),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  crossAxisCount: gridCount,
+                  padding: EdgeInsets.all(gridPadding),
+                  crossAxisSpacing: gridPadding,
+                  mainAxisSpacing: gridPadding,
                   children: const [
                     CardView(
                       imageUrl:
@@ -71,7 +81,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D',
+                          'https://images.unsplash.com/photo-1542291026-7eec264c27ff?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8fDA%3D',
                       description: 'Shoes',
                       price: 30.0,
                       rating: 4.2,
@@ -79,7 +89,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://t4.ftcdn.net/jpg/01/86/85/71/360_F_186857190_s4dfc0wfT6jcEcr7e3vzrFuUdysg6Gpp.jpg',
+                          'https://t4.ftcdn.net/jpg/01/86/85/71/360_F_186857190_s4dfc0wfT6jcEcr7e3vzrFuUdysg6Gpp.jpg',
                       description: 'Watches',
                       price: 30.0,
                       rating: 4.2,
@@ -87,7 +97,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmvBcPGK3gZ-WuM5hosqkb9EDS3a7xU3jr7Q&s',
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmvBcPGK3gZ-WuM5hosqkb9EDS3a7xU3jr7Q&s',
                       description: 'Jackets',
                       price: 30.0,
                       rating: 4.2,
@@ -131,10 +141,10 @@ class CategoryScreen extends StatelessWidget {
                 // Female Tab
                 GridView.count(
                   shrinkWrap: true,
-                  crossAxisCount: 2,
-                  padding: const EdgeInsets.all(8),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  crossAxisCount: gridCount,
+                  padding: EdgeInsets.all(gridPadding),
+                  crossAxisSpacing: gridPadding,
+                  mainAxisSpacing: gridPadding,
                   children: const [
                     CardView(
                       imageUrl:
@@ -146,7 +156,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://plus.unsplash.com/premium_photo-1676234844384-82e1830af724?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVlbHN8ZW58MHx8MHx8fDA%3D',
+                          'https://plus.unsplash.com/premium_photo-1676234844384-82e1830af724?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVlbHN8ZW58MHx8MHx8fDA%3D',
                       description: 'Heels',
                       price: 30.0,
                       rating: 4.2,
@@ -154,7 +164,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://images.unsplash.com/photo-1682745230951-8a5aa9a474a0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGFuZGJhZ3xlbnwwfHwwfHx8MA%3D%3D',
+                          'https://images.unsplash.com/photo-1682745230951-8a5aa9a474a0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGFuZGJhZ3xlbnwwfHwwfHx8MA%3D%3D',
                       description: 'Bags',
                       price: 30.0,
                       rating: 4.2,
@@ -162,7 +172,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://img.freepik.com/free-photo/portrait-hindu-bride-traditional-red-sari-with-golden-acce_8353-8861.jpg?semt=ais_hybrid&w=740',
+                          'https://img.freepik.com/free-photo/portrait-hindu-bride-traditional-red-sari-with-golden-acce_8353-8861.jpg?semt=ais_hybrid&w=740',
                       description: 'Jewelry',
                       price: 30.0,
                       rating: 4.2,
@@ -170,7 +180,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTigc0gHHHKVT4YVSzNBJ0Wfj7KMl0KbxeEPg&s',
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTigc0gHHHKVT4YVSzNBJ0Wfj7KMl0KbxeEPg&s',
                       description: 'Dresses',
                       price: 30.0,
                       rating: 4.2,
@@ -178,7 +188,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://plus.unsplash.com/premium_photo-1676234844384-82e1830af724?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVlbHN8ZW58MHx8MHx8fDA%3D',
+                          'https://plus.unsplash.com/premium_photo-1676234844384-82e1830af724?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aGVlbHN8ZW58MHx8MHx8fDA%3D',
                       description: 'Heels',
                       price: 30.0,
                       rating: 4.2,
@@ -186,7 +196,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://images.unsplash.com/photo-1682745230951-8a5aa9a474a0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGFuZGJhZ3xlbnwwfHwwfHx8MA%3D%3D',
+                          'https://images.unsplash.com/photo-1682745230951-8a5aa9a474a0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aGFuZGJhZ3xlbnwwfHwwfHx8MA%3D%3D',
                       description: 'Bags',
                       price: 30.0,
                       rating: 4.2,
@@ -194,7 +204,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://img.freepik.com/free-photo/portrait-hindu-bride-traditional-red-sari-with-golden-acce_8353-8861.jpg?semt=ais_hybrid&w=740',
+                          'https://img.freepik.com/free-photo/portrait-hindu-bride-traditional-red-sari-with-golden-acce_8353-8861.jpg?semt=ais_hybrid&w=740',
                       description: 'Jewelry',
                       price: 30.0,
                       rating: 4.2,
@@ -206,10 +216,10 @@ class CategoryScreen extends StatelessWidget {
                 // Kids Tab
                 GridView.count(
                   shrinkWrap: true,
-                  crossAxisCount: 2,
-                  padding: const EdgeInsets.all(8),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
+                  crossAxisCount: gridCount,
+                  padding: EdgeInsets.all(gridPadding),
+                  crossAxisSpacing: gridPadding,
+                  mainAxisSpacing: gridPadding,
                   children: const [
                     CardView(
                       imageUrl:
@@ -221,7 +231,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9E_eOxKxAIoSzXqSniV3eeX9KICw76lS6Fw&s',
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9E_eOxKxAIoSzXqSniV3eeX9KICw76lS6Fw&s',
                       description: 'Toys',
                       price: 30.0,
                       rating: 4.2,
@@ -229,7 +239,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://static.vecteezy.com/system/resources/thumbnails/026/442/540/small/sports-shoes-for-kids-generative-ai-photo.jpg',
+                          'https://static.vecteezy.com/system/resources/thumbnails/026/442/540/small/sports-shoes-for-kids-generative-ai-photo.jpg',
                       description: 'Shoes',
                       price: 30.0,
                       rating: 4.2,
@@ -237,7 +247,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://atlas-content-cdn.pixelsquid.com/stock-images/childrens-books-hardcover-book-4GMB1WA-600.jpg',
+                          'https://atlas-content-cdn.pixelsquid.com/stock-images/childrens-books-hardcover-book-4GMB1WA-600.jpg',
                       description: 'Books',
                       price: 30.0,
                       rating: 4.2,
@@ -245,7 +255,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://img.freepik.com/free-photo/front-view-cute-child-boy-white-t-shirt-yellow-jeans-holding-green-skateboard-blue-floor_179666-1008.jpg?semt=ais_hybrid&w=740',
+                          'https://img.freepik.com/free-photo/front-view-cute-child-boy-white-t-shirt-yellow-jeans-holding-green-skateboard-blue-floor_179666-1008.jpg?semt=ais_hybrid&w=740',
                       description: 'T-Shirts',
                       price: 30.0,
                       rating: 4.2,
@@ -253,7 +263,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9E_eOxKxAIoSzXqSniV3eeX9KICw76lS6Fw&s',
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9E_eOxKxAIoSzXqSniV3eeX9KICw76lS6Fw&s',
                       description: 'Toys',
                       price: 30.0,
                       rating: 4.2,
@@ -261,7 +271,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://static.vecteezy.com/system/resources/thumbnails/026/442/540/small/sports-shoes-for-kids-generative-ai-photo.jpg',
+                          'https://static.vecteezy.com/system/resources/thumbnails/026/442/540/small/sports-shoes-for-kids-generative-ai-photo.jpg',
                       description: 'Shoes',
                       price: 30.0,
                       rating: 4.2,
@@ -269,7 +279,7 @@ class CategoryScreen extends StatelessWidget {
                     ),
                     CardView(
                       imageUrl:
-                      'https://atlas-content-cdn.pixelsquid.com/stock-images/childrens-books-hardcover-book-4GMB1WA-600.jpg',
+                          'https://atlas-content-cdn.pixelsquid.com/stock-images/childrens-books-hardcover-book-4GMB1WA-600.jpg',
                       description: 'Books',
                       price: 30.0,
                       rating: 4.2,
@@ -281,104 +291,6 @@ class CategoryScreen extends StatelessWidget {
             ),
           ),
         ]),
-
-        // bottomNavigationBar: Container(
-        //   height: 72,
-        //   decoration: BoxDecoration(
-        //     color: Color(0xfffdf4e0),
-        //     borderRadius: const BorderRadius.only(
-        //       topLeft: Radius.circular(20),
-        //       topRight: Radius.circular(20),
-        //     ),
-        //   ),
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //     children: [
-        //       Column(
-        //         children: [
-        //           IconButton(
-        //             enableFeedback: false,
-        //             onPressed: () {
-        //               Navigator.push(
-        //                   context, MaterialPageRoute(builder: (context) => RootScreen()));
-        //             },
-        //             icon: const Icon(
-        //               Icons.home,
-        //               color: Colors.black,
-        //               size: 30,
-        //             ),
-        //           ),
-        //           Text("Home"),
-        //         ],
-        //       ),
-        //       Column(
-        //         children: [
-        //           IconButton(
-        //             enableFeedback: false,
-        //             onPressed: () {
-        //               Navigator.push(
-        //                   context, MaterialPageRoute(builder: (context) => CategoryScreen()));
-        //             },
-        //             icon: const Icon(
-        //               Iconsax.category,
-        //               color: Colors.black,
-        //               size: 30,
-        //             ),
-        //           ),
-        //           Text("Category")
-        //         ],
-        //       ),
-        //       Column(
-        //         children: [
-        //           IconButton(
-        //             enableFeedback: false,
-        //             onPressed: () {},
-        //             icon: const Icon(
-        //               Iconsax.activity,
-        //               color: Colors.black,
-        //               size: 30,
-        //             ),
-        //           ),
-        //           Text("Feed")
-        //         ],
-        //       ),
-        //       Column(
-        //         children: [
-        //           IconButton(
-        //             enableFeedback: false,
-        //             onPressed: () {
-        //               Navigator.push(
-        //                   context, MaterialPageRoute(builder: (context) => MyordersScreen()));
-        //             },
-        //             icon: const Icon(
-        //               Iconsax.box,
-        //               color: Colors.black,
-        //               size: 30,
-        //             ),
-        //           ),
-        //           Text("My Orders")
-        //         ],
-        //       ),
-        //       Column(
-        //         children: [
-        //           IconButton(
-        //             enableFeedback: false,
-        //             onPressed: () {
-        //               Navigator.push(
-        //                   context, MaterialPageRoute(builder: (context) => ProfileScreen()));
-        //             },
-        //             icon: const Icon(
-        //               Iconsax.profile_2user,
-        //               color: Colors.black,
-        //               size: 30,
-        //             ),
-        //           ),
-        //           Text("Profile")
-        //         ],
-        //       ),
-        //     ],
-        //   ),
-        // ),
       ),
     );
   }
@@ -409,14 +321,19 @@ class _CardViewState extends State<CardView> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Adjust font sizes and icon sizes based on screen width
+    double priceFontSize = screenWidth < 350 ? 14 : 16;
+    double descriptionFontSize = screenWidth < 350 ? 12 : 14;
+    double ratingFontSize = screenWidth < 350 ? 12 : 14;
+    double iconSize = screenWidth < 350 ? 14 : 16;
+    double heartIconSize = screenWidth < 350 ? 20 : 24;
+
     return Card(
-      //clipBehavior: Clip.antiAliasWithSaveLayer,
-      //semanticContainer: true,
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Column(
-        children: [
-          // Image with heart icon
+        elevation: 4,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Column(children: [
           Expanded(
             flex: 5,
             child: Stack(
@@ -443,56 +360,68 @@ class _CardViewState extends State<CardView> {
                     child: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
                       color: isFavorite ? Colors.red : Colors.white,
+                      size: heartIconSize,
                     ),
                   ),
                 ),
               ],
             ),
           ),
-
-          // Description
           Expanded(
-            flex: 3,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "\$${widget.price.toStringAsFixed(2)}",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  Text(
-                    widget.description,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.star, size: 16, color: Colors.orange),
-                      const SizedBox(width: 4),
-                      Text("${widget.rating} (${widget.reviewCount} Reviews)"),
-                    ],
-                  ),
-                  // ElevatedButton(
-                  //   onPressed: () {},
-                  //   style: ElevatedButton.styleFrom(
-                  //     backgroundColor: Colors.blue,
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(8),
-                  //     ),
-                  //   ),
-                  //   child: const Text("Add to Cart"),
-                  // ),
-
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+              flex: 4,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "\$${widget.price.toStringAsFixed(2)}",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: priceFontSize),
+                    ),
+                    Text(
+                      widget.description,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: descriptionFontSize),
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.star, size: iconSize, color: Colors.orange),
+                        const SizedBox(width: 4),
+                        Text(
+                          "${widget.rating} (${widget.reviewCount} Reviews)",
+                          style: TextStyle(fontSize: ratingFontSize),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    // SizedBox(
+                    //   width: double.infinity,
+                    //   height: 36,
+                    //   child: ElevatedButton(
+                    //     onPressed: () {
+                    //
+                    //       ScaffoldMessenger.of(context).showSnackBar(
+                    //         SnackBar(
+                    //           content:
+                    //               Text('${widget.description} added to cart.'),
+                    //         ),
+                    //       );
+                    //     },
+                    //     style: ElevatedButton.styleFrom(
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(8)),
+                    //     ),
+                    //     child: const Text(
+                    //       'Add to Cart',
+                    //       style: TextStyle(fontWeight: FontWeight.bold),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
+              ))
+        ]));
   }
 }
